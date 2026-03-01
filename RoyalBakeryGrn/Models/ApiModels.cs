@@ -43,6 +43,12 @@ namespace RoyalBakeryGrn.Models
         public int Quantity { get; set; }
         public decimal Price { get; set; }
         public int CurrentQuantity { get; set; }
+
+        /// <summary>Sold = Original Quantity - Current Remaining</summary>
+        public int SoldQuantity => Quantity - CurrentQuantity;
+
+        /// <summary>Display string for the UI</summary>
+        public string SoldInfo => $"Sold: {SoldQuantity} | Remaining: {CurrentQuantity} (min qty: {SoldQuantity})";
     }
 
     public class CreateGrnRequest

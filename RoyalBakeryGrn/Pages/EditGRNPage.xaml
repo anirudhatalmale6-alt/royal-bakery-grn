@@ -85,19 +85,26 @@
                    Margin="0,5"
                    BackgroundColor="#E0F2F1"
                    CornerRadius="8">
-                                    <Grid ColumnDefinitions="3*,2*,Auto" ColumnSpacing="10">
+                                    <Grid ColumnDefinitions="3*,2*,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="10" RowSpacing="2">
 
                                         <!-- Item Name -->
-                                        <Label Text="{Binding ItemName}" 
-                           FontFamily="PoppinsBold" 
-                           VerticalOptions="Center" 
+                                        <Label Text="{Binding ItemName}"
+                           FontFamily="PoppinsBold"
+                           VerticalOptions="Center"
                            Grid.Column="0"/>
 
+                                        <!-- Sold info (read-only) -->
+                                        <Label Grid.Row="1" Grid.Column="0"
+                           Text="{Binding SoldInfo}"
+                           FontSize="11"
+                           TextColor="#757575"
+                           FontFamily="PoppinsRegular"/>
+
                                         <!-- Quantity (editable) -->
-                                        <Entry Text="{Binding Quantity}" 
-                           Keyboard="Numeric" 
-                           FontFamily="PoppinsRegular" 
-                           HorizontalOptions="Fill" 
+                                        <Entry Text="{Binding Quantity}"
+                           Keyboard="Numeric"
+                           FontFamily="PoppinsRegular"
+                           HorizontalOptions="Fill"
                            VerticalOptions="Center"
                            Grid.Column="1"/>
 

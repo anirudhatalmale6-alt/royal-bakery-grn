@@ -83,6 +83,24 @@ namespace RoyalBakeryGrn.Pages
                 return;
             }
 
+            // Validate: cannot reduce quantity below already-sold amount
+            foreach (var item in _editableItems)
+            {
+                var original = _selectedGRN.Items.FirstOrDefault(o => o.MenuItemId == item.MenuItemId);
+                if (original != null)
+                {
+                    int soldQty = original.Quantity - original.CurrentQuantity;
+                    if (item.Quantity < soldQty)
+                    {
+                        await DisplayAlert("Error",
+                            $"Cannot set {item.ItemName} quantity to {item.Quantity}.\n\n" +
+                            $"{soldQty} units have already been sold. Minimum quantity is {soldQty}.",
+                            "OK");
+                        return;
+                    }
+                }
+            }
+
             try
             {
                 var request = new CreateAdjustmentRequest
