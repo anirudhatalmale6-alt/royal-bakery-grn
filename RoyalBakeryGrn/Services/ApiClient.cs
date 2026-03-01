@@ -6,30 +6,45 @@ namespace RoyalBakeryGrn.Services
 {
     public class ApiClient
     {
-        private readonly HttpClient _http;
+        private HttpClient _http;
         private static readonly JsonSerializerOptions _jsonOptions = new()
         {
             PropertyNameCaseInsensitive = true
         };
 
+        private string _baseUrl = "";
+
         public string BaseUrl
         {
-            get => _http.BaseAddress?.ToString().TrimEnd('/') ?? "";
-            set => _http.BaseAddress = new Uri(value.TrimEnd('/') + "/");
+            get => _baseUrl;
+            set
+            {
+                _baseUrl = value.TrimEnd('/');
+                _http = CreateHttpClient();
+                _http.BaseAddress = new Uri(_baseUrl + "/");
+            }
         }
 
         public ApiClient()
+        {
+            _http = CreateHttpClient();
+
+            // Load saved URL
+            var saved = Preferences.Get("api_base_url", "");
+            if (!string.IsNullOrEmpty(saved))
+            {
+                _baseUrl = saved.TrimEnd('/');
+                _http.BaseAddress = new Uri(_baseUrl + "/");
+            }
+        }
+
+        private static HttpClient CreateHttpClient()
         {
             var handler = new HttpClientHandler
             {
                 ServerCertificateCustomValidationCallback = (_, _, _, _) => true
             };
-            _http = new HttpClient(handler) { Timeout = TimeSpan.FromSeconds(15) };
-
-            // Load saved URL
-            var saved = Preferences.Get("api_base_url", "");
-            if (!string.IsNullOrEmpty(saved))
-                _http.BaseAddress = new Uri(saved.TrimEnd('/') + "/");
+            return new HttpClient(handler) { Timeout = TimeSpan.FromSeconds(15) };
         }
 
         public bool IsConfigured => _http.BaseAddress != null;
