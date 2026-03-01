@@ -21,6 +21,7 @@ namespace RoyalBakeryGrn
             builder.Services.AddSingleton<ApiClient>();
 
             // Register pages for DI
+            builder.Services.AddTransient<LoginPage>();
             builder.Services.AddTransient<MainPage>();
             builder.Services.AddTransient<AddGRN>();
             builder.Services.AddTransient<AdjustmentRequestsListPage>();

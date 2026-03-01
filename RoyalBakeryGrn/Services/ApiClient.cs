@@ -34,6 +34,28 @@ namespace RoyalBakeryGrn.Services
 
         public bool IsConfigured => _http.BaseAddress != null;
 
+        // ===== Auth =====
+        public async Task<LoginResponse> LoginAsync(string username, string password)
+        {
+            var resp = await _http.PostAsJsonAsync("api/auth/login",
+                new LoginRequest { Username = username, Password = password }, _jsonOptions);
+            if (!resp.IsSuccessStatusCode)
+            {
+                var body = await resp.Content.ReadAsStringAsync();
+                try
+                {
+                    var err = JsonSerializer.Deserialize<ApiError>(body, _jsonOptions);
+                    throw new Exception(err?.Message ?? "Login failed");
+                }
+                catch (JsonException)
+                {
+                    throw new Exception(body);
+                }
+            }
+            return await resp.Content.ReadFromJsonAsync<LoginResponse>(_jsonOptions)
+                ?? throw new Exception("Empty response from server");
+        }
+
         // ===== Menu =====
         public async Task<List<MenuItemDto>> GetMenuItemsAsync()
         {
