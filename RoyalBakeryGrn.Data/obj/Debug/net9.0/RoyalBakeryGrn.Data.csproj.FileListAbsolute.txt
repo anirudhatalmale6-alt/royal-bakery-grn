@@ -1,0 +1,14 @@
+C:\Users\user\source\repos\RoyalBakeryGrn\RoyalBakeryGrn.Data\bin\Debug\net9.0\RoyalBakeryGrn.Data.deps.json
+C:\Users\user\source\repos\RoyalBakeryGrn\RoyalBakeryGrn.Data\bin\Debug\net9.0\RoyalBakeryGrn.Data.runtimeconfig.json
+C:\Users\user\source\repos\RoyalBakeryGrn\RoyalBakeryGrn.Data\bin\Debug\net9.0\RoyalBakeryGrn.Data.dll
+C:\Users\user\source\repos\RoyalBakeryGrn\RoyalBakeryGrn.Data\bin\Debug\net9.0\RoyalBakeryGrn.Data.pdb
+C:\Users\user\source\repos\RoyalBakeryGrn\RoyalBakeryGrn.Data\obj\Debug\net9.0\RoyalBakeryGrn.Data.csproj.AssemblyReference.cache
+C:\Users\user\source\repos\RoyalBakeryGrn\RoyalBakeryGrn.Data\obj\Debug\net9.0\RoyalBakeryGrn.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\source\repos\RoyalBakeryGrn\RoyalBakeryGrn.Data\obj\Debug\net9.0\RoyalBakeryGrn.Data.AssemblyInfoInputs.cache
+C:\Users\user\source\repos\RoyalBakeryGrn\RoyalBakeryGrn.Data\obj\Debug\net9.0\RoyalBakeryGrn.Data.AssemblyInfo.cs
+C:\Users\user\source\repos\RoyalBakeryGrn\RoyalBakeryGrn.Data\obj\Debug\net9.0\RoyalBakeryGrn.Data.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\RoyalBakeryGrn\RoyalBakeryGrn.Data\obj\Debug\net9.0\RoyalBakeryGrn.Data.dll
+C:\Users\user\source\repos\RoyalBakeryGrn\RoyalBakeryGrn.Data\obj\Debug\net9.0\refint\RoyalBakeryGrn.Data.dll
+C:\Users\user\source\repos\RoyalBakeryGrn\RoyalBakeryGrn.Data\obj\Debug\net9.0\RoyalBakeryGrn.Data.pdb
+C:\Users\user\source\repos\RoyalBakeryGrn\RoyalBakeryGrn.Data\obj\Debug\net9.0\RoyalBakeryGrn.Data.genruntimeconfig.cache
+C:\Users\user\source\repos\RoyalBakeryGrn\RoyalBakeryGrn.Data\obj\Debug\net9.0\ref\RoyalBakeryGrn.Data.dll

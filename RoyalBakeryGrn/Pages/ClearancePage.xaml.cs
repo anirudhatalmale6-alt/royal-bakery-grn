@@ -1,0 +1,133 @@
+using RoyalBakeryGrn.Models;
+using RoyalBakeryGrn.Services;
+using System.Collections.ObjectModel;
+
+namespace RoyalBakeryGrn.Pages
+{
+    public partial class ClearancePage : ContentPage
+    {
+        private readonly ApiClient _api;
+        private ObservableCollection<ClearanceDto> _todayClearances = new();
+        private List<MenuItemDto> _allMenuItems = new();
+        private MenuItemDto? _selectedMenuItem;
+
+        public ClearancePage(ApiClient api)
+        {
+            InitializeComponent();
+            _api = api;
+            ClearanceCollectionView.ItemsSource = _todayClearances;
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await LoadMenuItems();
+            await LoadTodayClearances();
+        }
+
+        private async Task LoadMenuItems()
+        {
+            try
+            {
+                _allMenuItems = await _api.GetMenuItemsAsync();
+                MenuItemResultsCollection.ItemsSource = _allMenuItems;
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"Failed to load menu items: {ex.Message}", "OK");
+            }
+        }
+
+        private async Task LoadTodayClearances()
+        {
+            try
+            {
+                var clearances = await _api.GetTodayClearancesAsync();
+                _todayClearances.Clear();
+                foreach (var c in clearances)
+                    _todayClearances.Add(c);
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"Failed to load clearances: {ex.Message}", "OK");
+            }
+        }
+
+        private void MenuItemSearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var keyword = e.NewTextValue?.Trim() ?? "";
+
+            if (string.IsNullOrWhiteSpace(keyword))
+            {
+                MenuItemResultsCollection.IsVisible = false;
+                MenuItemResultsCollection.ItemsSource = new List<MenuItemDto>();
+                _selectedMenuItem = null;
+            }
+            else
+            {
+                var filtered = _allMenuItems
+                    .Where(i => i.Name.Contains(keyword, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+
+                MenuItemResultsCollection.ItemsSource = filtered;
+                MenuItemResultsCollection.IsVisible = filtered.Any();
+            }
+        }
+
+        private void MenuItemResultsCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.CurrentSelection.FirstOrDefault() is MenuItemDto selected)
+            {
+                _selectedMenuItem = selected;
+                MenuItemSearchBar.Text = selected.Name;
+                MenuItemResultsCollection.ItemsSource = new List<MenuItemDto>();
+            }
+        }
+
+        private async void SubmitClearance_Clicked(object sender, EventArgs e)
+        {
+            if (_selectedMenuItem == null)
+            {
+                await DisplayAlert("Error", "Please select a menu item.", "OK");
+                return;
+            }
+
+            if (!int.TryParse(QuantityEntry.Text, out int qty) || qty <= 0)
+            {
+                await DisplayAlert("Error", "Enter a valid quantity.", "OK");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(ReasonEntry.Text))
+            {
+                await DisplayAlert("Error", "Reason is required.", "OK");
+                return;
+            }
+
+            try
+            {
+                var request = new CreateClearanceRequest
+                {
+                    MenuItemId = _selectedMenuItem.Id,
+                    Quantity = qty,
+                    Reason = ReasonEntry.Text.Trim(),
+                    Note = string.IsNullOrWhiteSpace(NoteEditor.Text) ? null : NoteEditor.Text.Trim()
+                };
+
+                await _api.CreateClearanceAsync(request);
+                await DisplayAlert("Success", "Clearance recorded successfully.", "OK");
+
+                await LoadTodayClearances();
+                QuantityEntry.Text = string.Empty;
+                ReasonEntry.Text = string.Empty;
+                NoteEditor.Text = string.Empty;
+                MenuItemSearchBar.Text = string.Empty;
+                _selectedMenuItem = null;
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "OK");
+            }
+        }
+    }
+}

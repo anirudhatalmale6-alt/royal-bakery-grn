@@ -1,0 +1,193 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\user\\source\\repos\\RoyalBakeryGrn\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6360C02F-8C80-4AE1-9661-7AC62FE62DC1}|RoyalBakeryGrn\\RoyalBakeryGrn.csproj|c:\\users\\user\\source\\repos\\royalbakerygrn\\royalbakerygrn\\royalbakerygrn.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{6360C02F-8C80-4AE1-9661-7AC62FE62DC1}|RoyalBakeryGrn\\RoyalBakeryGrn.csproj|solutionrelative:royalbakerygrn\\royalbakerygrn.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6360C02F-8C80-4AE1-9661-7AC62FE62DC1}|RoyalBakeryGrn\\RoyalBakeryGrn.csproj|c:\\users\\user\\source\\repos\\royalbakerygrn\\royalbakerygrn\\pages\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{6360C02F-8C80-4AE1-9661-7AC62FE62DC1}|RoyalBakeryGrn\\RoyalBakeryGrn.csproj|solutionrelative:royalbakerygrn\\pages\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6360C02F-8C80-4AE1-9661-7AC62FE62DC1}|RoyalBakeryGrn\\RoyalBakeryGrn.csproj|c:\\users\\user\\source\\repos\\royalbakerygrn\\royalbakerygrn\\pages\\clearancepage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6360C02F-8C80-4AE1-9661-7AC62FE62DC1}|RoyalBakeryGrn\\RoyalBakeryGrn.csproj|solutionrelative:royalbakerygrn\\pages\\clearancepage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4046D043-C8BE-4135-9CF7-68B3F3FDA92A}|RoyalBakeryGrn.Data\\RoyalBakeryGrn.Data.csproj|c:\\users\\user\\source\\repos\\royalbakerygrn\\royalbakerygrn.data\\royalbakerygrn.data.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{4046D043-C8BE-4135-9CF7-68B3F3FDA92A}|RoyalBakeryGrn.Data\\RoyalBakeryGrn.Data.csproj|solutionrelative:royalbakerygrn.data\\royalbakerygrn.data.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4046D043-C8BE-4135-9CF7-68B3F3FDA92A}|RoyalBakeryGrn.Data\\RoyalBakeryGrn.Data.csproj|c:\\users\\user\\source\\repos\\royalbakerygrn\\royalbakerygrn.data\\stockdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4046D043-C8BE-4135-9CF7-68B3F3FDA92A}|RoyalBakeryGrn.Data\\RoyalBakeryGrn.Data.csproj|solutionrelative:royalbakerygrn.data\\stockdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCCEA898-7331-4F77-A4EF-CFDFBA7ABC1B}|RoyalBakeryGrn.EF\\RoyalBakeryGrn.EF.csproj|c:\\users\\user\\source\\repos\\royalbakerygrn\\royalbakerygrn.ef\\royalbakerygrn.ef.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{FCCEA898-7331-4F77-A4EF-CFDFBA7ABC1B}|RoyalBakeryGrn.EF\\RoyalBakeryGrn.EF.csproj|solutionrelative:royalbakerygrn.ef\\royalbakerygrn.ef.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\dotnet\\packs\\Microsoft.Android.Sdk.Windows\\35.0.105\\tools\\Xamarin.Android.Resource.Designer.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6360C02F-8C80-4AE1-9661-7AC62FE62DC1}|RoyalBakeryGrn\\RoyalBakeryGrn.csproj|c:\\users\\user\\source\\repos\\royalbakerygrn\\royalbakerygrn\\pages\\clearancepage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{6360C02F-8C80-4AE1-9661-7AC62FE62DC1}|RoyalBakeryGrn\\RoyalBakeryGrn.csproj|solutionrelative:royalbakerygrn\\pages\\clearancepage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6360C02F-8C80-4AE1-9661-7AC62FE62DC1}|RoyalBakeryGrn\\RoyalBakeryGrn.csproj|c:\\users\\user\\source\\repos\\royalbakerygrn\\royalbakerygrn\\appshell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{6360C02F-8C80-4AE1-9661-7AC62FE62DC1}|RoyalBakeryGrn\\RoyalBakeryGrn.csproj|solutionrelative:royalbakerygrn\\appshell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6360C02F-8C80-4AE1-9661-7AC62FE62DC1}|RoyalBakeryGrn\\RoyalBakeryGrn.csproj|c:\\users\\user\\source\\repos\\royalbakerygrn\\royalbakerygrn\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{6360C02F-8C80-4AE1-9661-7AC62FE62DC1}|RoyalBakeryGrn\\RoyalBakeryGrn.csproj|solutionrelative:royalbakerygrn\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{f96a0d64-71fd-316f-b663-924c78154f2a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainPage.xaml",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\RoyalBakeryGrn\\RoyalBakeryGrn\\Pages\\MainPage.xaml",
+              "RelativeDocumentMoniker": "RoyalBakeryGrn\\Pages\\MainPage.xaml",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\RoyalBakeryGrn\\RoyalBakeryGrn\\Pages\\MainPage.xaml",
+              "RelativeToolTip": "RoyalBakeryGrn\\Pages\\MainPage.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-02-27T09:24:36.461Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "RoyalBakeryGrn.EF.csproj",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\RoyalBakeryGrn\\RoyalBakeryGrn.EF\\RoyalBakeryGrn.EF.csproj",
+              "RelativeDocumentMoniker": "RoyalBakeryGrn.EF\\RoyalBakeryGrn.EF.csproj",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\RoyalBakeryGrn\\RoyalBakeryGrn.EF\\RoyalBakeryGrn.EF.csproj",
+              "RelativeToolTip": "RoyalBakeryGrn.EF\\RoyalBakeryGrn.EF.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-02-26T11:12:42.84Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RoyalBakeryGrn.Data.csproj",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\RoyalBakeryGrn\\RoyalBakeryGrn.Data\\RoyalBakeryGrn.Data.csproj",
+              "RelativeDocumentMoniker": "RoyalBakeryGrn.Data\\RoyalBakeryGrn.Data.csproj",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\RoyalBakeryGrn\\RoyalBakeryGrn.Data\\RoyalBakeryGrn.Data.csproj",
+              "RelativeToolTip": "RoyalBakeryGrn.Data\\RoyalBakeryGrn.Data.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-02-26T11:12:16.758Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Xamarin.Android.Resource.Designer.targets",
+              "DocumentMoniker": "C:\\Program Files\\dotnet\\packs\\Microsoft.Android.Sdk.Windows\\35.0.105\\tools\\Xamarin.Android.Resource.Designer.targets",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Program Files\\dotnet\\packs\\Microsoft.Android.Sdk.Windows\\35.0.105\\tools\\Xamarin.Android.Resource.Designer.targets",
+              "ToolTip": "C:\\Program Files\\dotnet\\packs\\Microsoft.Android.Sdk.Windows\\35.0.105\\tools\\Xamarin.Android.Resource.Designer.targets",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\Program Files\\dotnet\\packs\\Microsoft.Android.Sdk.Windows\\35.0.105\\tools\\Xamarin.Android.Resource.Designer.targets",
+              "ViewState": "AgIAACgAAAAAAAAAAAAuwEEAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2026-02-26T10:52:26.544Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RoyalBakeryGrn.csproj",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\RoyalBakeryGrn\\RoyalBakeryGrn\\RoyalBakeryGrn.csproj",
+              "RelativeDocumentMoniker": "RoyalBakeryGrn\\RoyalBakeryGrn.csproj",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\RoyalBakeryGrn\\RoyalBakeryGrn\\RoyalBakeryGrn.csproj",
+              "RelativeToolTip": "RoyalBakeryGrn\\RoyalBakeryGrn.csproj",
+              "ViewState": "AgIAADcAAAAAAAAAAAAqwGcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-02-26T09:14:44.685Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "StockDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\RoyalBakeryGrn\\RoyalBakeryGrn.Data\\StockDbContext.cs",
+              "RelativeDocumentMoniker": "RoyalBakeryGrn.Data\\StockDbContext.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\RoyalBakeryGrn\\RoyalBakeryGrn.Data\\StockDbContext.cs",
+              "RelativeToolTip": "RoyalBakeryGrn.Data\\StockDbContext.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAqwCUAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-13T09:24:21.892Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ClearancePage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\RoyalBakeryGrn\\RoyalBakeryGrn\\Pages\\ClearancePage.xaml.cs",
+              "RelativeDocumentMoniker": "RoyalBakeryGrn\\Pages\\ClearancePage.xaml.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\RoyalBakeryGrn\\RoyalBakeryGrn\\Pages\\ClearancePage.xaml.cs",
+              "RelativeToolTip": "RoyalBakeryGrn\\Pages\\ClearancePage.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-13T09:21:40.467Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ClearancePage.xaml",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\RoyalBakeryGrn\\RoyalBakeryGrn\\Pages\\ClearancePage.xaml",
+              "RelativeDocumentMoniker": "RoyalBakeryGrn\\Pages\\ClearancePage.xaml",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\RoyalBakeryGrn\\RoyalBakeryGrn\\Pages\\ClearancePage.xaml",
+              "RelativeToolTip": "RoyalBakeryGrn\\Pages\\ClearancePage.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-09-19T06:54:13.817Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\RoyalBakeryGrn\\RoyalBakeryGrn\\App.xaml",
+              "RelativeDocumentMoniker": "RoyalBakeryGrn\\App.xaml",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\RoyalBakeryGrn\\RoyalBakeryGrn\\App.xaml",
+              "RelativeToolTip": "RoyalBakeryGrn\\App.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-09-19T06:26:10.458Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "AppShell.xaml",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\RoyalBakeryGrn\\RoyalBakeryGrn\\AppShell.xaml",
+              "RelativeDocumentMoniker": "RoyalBakeryGrn\\AppShell.xaml",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\RoyalBakeryGrn\\RoyalBakeryGrn\\AppShell.xaml",
+              "RelativeToolTip": "RoyalBakeryGrn\\AppShell.xaml",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABoAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-09-19T06:26:01.958Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

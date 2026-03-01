@@ -1,0 +1,116 @@
+﻿<ContentPage
+    x:Class="RoyalBakeryGrn.Pages.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="#F5F5F5"
+    >
+
+    <ContentPage.Resources>
+        <!-- Font Styles -->
+        <Style x:Key="TitleLabelStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="PoppinsBold"/>
+            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="TextColor" Value="#26A69A"/>
+        </Style>
+
+        <Style x:Key="NormalLabelStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="PoppinsRegular"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="TextColor" Value="#616161"/>
+        </Style>
+
+        <Style x:Key="CardButtonStyle" TargetType="Button">
+            <Setter Property="CornerRadius" Value="15"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="BackgroundColor" Value="White"/>
+            <Setter Property="HeightRequest" Value="120"/>
+            <Setter Property="WidthRequest" Value="120"/>
+            
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="TextColor" Value="#212121"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <!-- Welcome & Date/Time -->
+            <VerticalStackLayout Spacing="5">
+                <Label Text="👋 Welcome Back!" Style="{StaticResource TitleLabelStyle}"/>
+                <Label x:Name="DateTimeLabel"
+                       FontFamily="PoppinsRegular"
+                       FontSize="18"
+                       TextColor="#212121"
+                       HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+
+            <!-- Dashboard Cards -->
+            <!-- Dashboard Cards -->
+            <HorizontalStackLayout Spacing="15" HorizontalOptions="CenterAndExpand">
+
+                <Frame CornerRadius="15"
+           Padding="20"
+           BackgroundColor="White"
+           HasShadow="True">
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Text="➕" FontSize="36" HorizontalOptions="Center"/>
+                        <Label Text="Add GRN" FontFamily="PoppinsBold" FontSize="18" HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="AddGRNCard_Tapped"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+                <Frame CornerRadius="15"
+           Padding="20"
+           BackgroundColor="White"
+           HasShadow="True">
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Text="✏️" FontSize="36" HorizontalOptions="Center"/>
+                        <Label Text="Adjust GRN" FontFamily="PoppinsBold" FontSize="18" HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="AdjustGRNCard_Tapped"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+                <Frame CornerRadius="15"
+           Padding="20"
+           BackgroundColor="White"
+           HasShadow="True">
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Text="📦" FontSize="36" HorizontalOptions="Center"/>
+                        <Label Text="Stock Manage" FontFamily="PoppinsBold" FontSize="18" HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="StockManageCard_Tapped"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+            </HorizontalStackLayout>
+
+
+            <!-- Recent Added Items -->
+            <Label Text="🆕 Recent Added Items"
+                   FontFamily="PoppinsBold"
+                   FontSize="20"
+                   TextColor="#26A69A"
+                   Margin="0,10,0,0"/>
+
+            <CollectionView x:Name="RecentItemsCollectionView" HeightRequest="250">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10" Margin="0,5" BackgroundColor="#E0F2F1" CornerRadius="10">
+                            <Grid ColumnDefinitions="2*,*,Auto" ColumnSpacing="10">
+                                <Label Text="{Binding ItemName}" VerticalOptions="Center" FontFamily="PoppinsBold"/>
+                                <Label Text="{Binding Quantity}" VerticalOptions="Center" HorizontalOptions="Center" FontFamily="PoppinsRegular"/>
+                                <Label Text="{Binding Price, StringFormat='₨ {0:F2}'}" VerticalOptions="Center" HorizontalOptions="End" FontFamily="PoppinsRegular"/>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

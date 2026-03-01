@@ -1,0 +1,1 @@
+C:\Users\user\source\repos\RoyalBakeryGrn\RoyalBakeryGrn.Data\bin\Release\net9.0-android\publish\_Microsoft.Android.Resource.Designer.dll

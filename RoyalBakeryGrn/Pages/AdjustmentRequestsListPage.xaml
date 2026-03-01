@@ -1,0 +1,91 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RoyalBakeryGrn.Pages.AdjustmentRequestsListPage"
+             
+             BackgroundColor="#F5F5F5">
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+
+        <!-- Header -->
+        <Label Text="Adjust GRN"
+       FontSize="28"
+       FontAttributes="Bold"
+       TextColor="#26A69A"
+       HorizontalOptions="Center"
+       Margin="0,20,0,10"
+       FontFamily="PoppinsBold"/>
+
+
+        <!-- Search bar -->
+        <Label Text="Search Requests"
+               FontAttributes="Bold"
+               FontSize="18"
+               FontFamily="PoppinsBold"/>
+        <SearchBar x:Name="SearchBar"
+                   Placeholder="Search GRN or Reason"
+                   TextChanged="OnSearchTextChanged"
+                   FontFamily="PoppinsRegular"/>
+
+        <!-- Add Request button -->
+        <Button Text="➕ Add Request"
+                BackgroundColor="#2196F3"
+                TextColor="White"
+                CornerRadius="10"
+                HeightRequest="45"
+                FontFamily="PoppinsBold"
+                Clicked="AddRequest_Clicked"/>
+
+        <!-- CollectionView -->
+        <CollectionView x:Name="RequestsCollectionView"
+                        HeightRequest="400"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BackgroundColor="White"
+                           CornerRadius="10"
+                           HasShadow="True"
+                           Margin="0,5"
+                           Padding="15">
+                        <Grid ColumnDefinitions="*,Auto"
+                              RowDefinitions="Auto,Auto"
+                              ColumnSpacing="10"
+                              RowSpacing="5">
+
+                            <!-- GRN Number -->
+                            <Label Text="{Binding GRNNumber}"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   FontFamily="PoppinsBold"
+                                   TextColor="#212121"
+                                   Grid.Row="0"
+                                   Grid.Column="0"/>
+
+                            <!-- Reason -->
+                            <Label Text="{Binding Reason}"
+                                   FontSize="14"
+                                   FontFamily="PoppinsRegular"
+                                   TextColor="#555555"
+                                   Grid.Row="1"
+                                   Grid.Column="0"/>
+
+                            <!-- Enter Code button -->
+                            <Button Text="Enter Code"
+                                    BackgroundColor="#4CAF50"
+                                    TextColor="White"
+                                    CornerRadius="8"
+                                    WidthRequest="100"
+                                    HeightRequest="35"
+                                    FontFamily="PoppinsBold"
+                                    Grid.RowSpan="2"
+                                    Grid.Column="1"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    Clicked="EnterCode_Clicked"/>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </VerticalStackLayout>
+</ContentPage>

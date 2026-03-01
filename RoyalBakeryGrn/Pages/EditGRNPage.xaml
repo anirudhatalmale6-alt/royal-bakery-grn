@@ -1,0 +1,126 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RoyalBakeryGrn.Pages.EditGRNPage"
+             BackgroundColor="#F5F5F5">
+
+    <ContentPage.Resources>
+        <!-- Button Styles -->
+        <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="FontFamily" Value="PoppinsRegular"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="HeightRequest" Value="50"/>
+            <Setter Property="BackgroundColor" Value="#26A69A"/>
+            <Setter Property="TextColor" Value="White"/>
+        </Style>
+
+        <Style x:Key="SecondaryButtonStyle" TargetType="Button">
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="FontFamily" Value="PoppinsRegular"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="HeightRequest" Value="40"/>
+            <Setter Property="BackgroundColor" Value="#EF5350"/>
+            <Setter Property="TextColor" Value="White"/>
+        </Style>
+
+        <!-- Label Style -->
+        <Style x:Key="HeaderLabelStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="PoppinsBold"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="TextColor" Value="#212121"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="25" Spacing="20">
+
+            <!-- Header -->
+            <Label Text="Edit GRN"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   TextColor="#26A69A"
+                   HorizontalOptions="Center"
+                   Margin="0,20,0,10"
+                   FontFamily="PoppinsBold"/>
+
+            <!-- Select GRN -->
+            <Frame BackgroundColor="White"
+                   Padding="15"
+                   CornerRadius="12"
+                   HasShadow="True">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Select GRN" Style="{StaticResource HeaderLabelStyle}"/>
+                    <Picker x:Name="GRNPicker" Title="Choose a GRN"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Reason Entry -->
+            <Frame BackgroundColor="White"
+                   Padding="15"
+                   CornerRadius="12"
+                   HasShadow="True">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Reason for Edit" Style="{StaticResource HeaderLabelStyle}"/>
+                    <Entry x:Name="ReasonEntry" Placeholder="Enter reason"
+                           FontFamily="PoppinsRegular"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Load GRN Items Button -->
+            <Button Text="Load GRN Items"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    Clicked="LoadGRNItems_Clicked"/>
+
+            <!-- GRN Items Collection -->
+            <Frame BackgroundColor="White"
+                   Padding="15"
+                   CornerRadius="12"
+                   HasShadow="True">
+                <VerticalStackLayout>
+                    <Label Text="Edit GRN Items" Style="{StaticResource HeaderLabelStyle}" Margin="0,0,0,10"/>
+                    <CollectionView x:Name="AdjustmentItemsView" HeightRequest="300">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame Padding="10"
+                   Margin="0,5"
+                   BackgroundColor="#E0F2F1"
+                   CornerRadius="8">
+                                    <Grid ColumnDefinitions="3*,2*,Auto" ColumnSpacing="10">
+
+                                        <!-- Item Name -->
+                                        <Label Text="{Binding ItemName}" 
+                           FontFamily="PoppinsBold" 
+                           VerticalOptions="Center" 
+                           Grid.Column="0"/>
+
+                                        <!-- Quantity (editable) -->
+                                        <Entry Text="{Binding Quantity}" 
+                           Keyboard="Numeric" 
+                           FontFamily="PoppinsRegular" 
+                           HorizontalOptions="Fill" 
+                           VerticalOptions="Center"
+                           Grid.Column="1"/>
+
+                                        <!-- Remove Button -->
+                                        <Button Text="Remove"
+                            Style="{StaticResource SecondaryButtonStyle}"
+                            Clicked="RemoveAdjustmentItem_Clicked"
+                            VerticalOptions="Center"
+                            HorizontalOptions="End"
+                            Grid.Column="2"/>
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Save Button -->
+            <Button Text="Save Adjustment Request"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    BackgroundColor="#FF9800"
+                    Clicked="SaveAdjustmentRequest_Clicked"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

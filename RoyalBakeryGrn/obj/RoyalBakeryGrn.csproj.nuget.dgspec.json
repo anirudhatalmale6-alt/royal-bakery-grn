@@ -1,0 +1,96 @@
+{
+  "format": 1,
+  "restore": {
+    "/var/lib/freelancer/projects/40264069/GRNPOS/GRNPOS-main/RoyalBakeryGrn/RoyalBakeryGrn/RoyalBakeryGrn.csproj": {}
+  },
+  "projects": {
+    "/var/lib/freelancer/projects/40264069/GRNPOS/GRNPOS-main/RoyalBakeryGrn/RoyalBakeryGrn/RoyalBakeryGrn.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/var/lib/freelancer/projects/40264069/GRNPOS/GRNPOS-main/RoyalBakeryGrn/RoyalBakeryGrn/RoyalBakeryGrn.csproj",
+        "projectName": "RoyalBakeryGrn",
+        "projectPath": "/var/lib/freelancer/projects/40264069/GRNPOS/GRNPOS-main/RoyalBakeryGrn/RoyalBakeryGrn/RoyalBakeryGrn.csproj",
+        "packagesPath": "/home/freelancer2/.nuget/packages/",
+        "outputPath": "/var/lib/freelancer/projects/40264069/GRNPOS/GRNPOS-main/RoyalBakeryGrn/RoyalBakeryGrn/obj/",
+        "projectStyle": "PackageReference",
+        "crossTargeting": true,
+        "configFilePaths": [
+          "/home/freelancer2/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0-android"
+        ],
+        "sources": {
+          "/home/freelancer2/.dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0-android35.0": {
+            "targetAlias": "net9.0-android",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0-android35.0": {
+          "targetAlias": "net9.0-android",
+          "dependencies": {
+            "Microsoft.Extensions.Logging.Debug": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.Maui.Controls": {
+              "target": "Package",
+              "version": "[9.0.120, )"
+            },
+            "Microsoft.NET.ILLink.Tasks": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.13, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.Android": {
+              "privateAssets": "all"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/freelancer2/.dotnet/sdk/9.0.311/PortableRuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "android-arm64": {
+          "#import": []
+        },
+        "android-x64": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

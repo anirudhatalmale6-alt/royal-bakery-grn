@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="RoyalBakeryGrn.Pages.AddGRN"
+    x:Name="RootPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="#F5F5F5">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="25" Spacing="25">
+
+            <!-- Header -->
+            <Label Text="Add Goods Receipt Note (GRN)"
+                   FontSize="28"
+                   FontFamily="PoppinsBold"
+                   TextColor="#26A69A"
+                   HorizontalOptions="Center"
+                   Margin="0,20,0,10"/>
+
+            <!-- Add Item Section -->
+            <Frame BackgroundColor="White" Padding="20" CornerRadius="12" HasShadow="True">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="Add Item to GRN"
+                           FontSize="20"
+                           FontFamily="PoppinsBold"
+                           TextColor="#212121"/>
+
+                    <Picker x:Name="ItemPicker"
+                            Title="Select Item" />
+
+                    <Entry x:Name="QuantityEntry"
+                           Placeholder="Enter Quantity"
+                           Keyboard="Numeric"/>
+
+                    <Button Text="Add to GRN"
+                            BackgroundColor="#26A69A"
+                            TextColor="White"
+                            CornerRadius="10"
+                            Clicked="AddToGRN_Clicked"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- GRN Items Section -->
+            <Frame BackgroundColor="White" Padding="15" CornerRadius="12" HasShadow="True">
+                <VerticalStackLayout>
+                    <Label Text="Current GRN Items"
+                           FontSize="20"
+                           FontFamily="PoppinsBold"
+                           TextColor="#212121"
+                           Margin="0,0,0,10"/>
+
+                    <CollectionView x:Name="GRNListView"
+                                    HeightRequest="250">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame Padding="10" Margin="0,5" BackgroundColor="#E0F2F1" CornerRadius="8">
+                                    <Grid ColumnDefinitions="3*,Auto,Auto" ColumnSpacing="15">
+                                        <!-- Item Name -->
+                                        <Label Text="{Binding ItemName}"
+                                               VerticalOptions="Center"
+                                               FontFamily="PoppinsBold"
+                                               TextColor="#004D40"
+                                               Grid.Column="0"/>
+                                        <!-- Editable Quantity -->
+                                        <Entry Text="{Binding Quantity}"
+                                               Keyboard="Numeric"
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="Center"
+                                               Grid.Column="1"
+                                               Completed="QuantityEntry_Completed"/>
+                                        <!-- Remove Button -->
+                                        <Button Text="Remove"
+                                                Grid.Column="2"
+                                                BackgroundColor="#EF5350"
+                                                TextColor="White"
+                                                CornerRadius="8"
+                                                Clicked="RemoveGRNItem_Clicked"/>
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Save Button -->
+            <Button Text="Save GRN"
+                    BackgroundColor="#26A69A"
+                    TextColor="White"
+                    CornerRadius="10"
+                    FontSize="18"
+                    Clicked="SaveGRN_Clicked"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

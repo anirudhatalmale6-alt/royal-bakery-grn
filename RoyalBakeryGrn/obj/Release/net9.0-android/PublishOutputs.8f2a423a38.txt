@@ -1,0 +1,4 @@
+/var/lib/freelancer/projects/40264069/GRNPOS/GRNPOS-main/RoyalBakeryGrn/RoyalBakeryGrn/bin/Release/net9.0-android/publish/com.royalbakery.grn-Signed.apk
+/var/lib/freelancer/projects/40264069/GRNPOS/GRNPOS-main/RoyalBakeryGrn/RoyalBakeryGrn/bin/Release/net9.0-android/publish/com.royalbakery.grn.apk
+/var/lib/freelancer/projects/40264069/GRNPOS/GRNPOS-main/RoyalBakeryGrn/RoyalBakeryGrn/bin/Release/net9.0-android/publish/com.royalbakery.grn-Signed.aab
+/var/lib/freelancer/projects/40264069/GRNPOS/GRNPOS-main/RoyalBakeryGrn/RoyalBakeryGrn/bin/Release/net9.0-android/publish/_Microsoft.Android.Resource.Designer.dll

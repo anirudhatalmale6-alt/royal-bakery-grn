@@ -1,0 +1,85 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = true
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.TargetFramework = net9.0-android
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = RoyalBakeryGrn
+build_property.ProjectDir = /var/lib/freelancer/projects/40264069/GRNPOS/GRNPOS-main/RoyalBakeryGrn/RoyalBakeryGrn/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = false
+build_property.EffectiveAnalysisLevelStyle = 9.0
+build_property.EnableCodeStyleSeverity = 
+
+[/var/lib/freelancer/projects/40264069/GRNPOS/GRNPOS-main/RoyalBakeryGrn/RoyalBakeryGrn/App.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RoyalBakeryGrn.App.xaml
+build_metadata.AdditionalFiles.TargetPath = App.xaml
+build_metadata.AdditionalFiles.RelativePath = App.xaml
+
+[/var/lib/freelancer/projects/40264069/GRNPOS/GRNPOS-main/RoyalBakeryGrn/RoyalBakeryGrn/AppShell.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RoyalBakeryGrn.AppShell.xaml
+build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
+build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
+
+[/var/lib/freelancer/projects/40264069/GRNPOS/GRNPOS-main/RoyalBakeryGrn/RoyalBakeryGrn/Pages/AddGRN.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RoyalBakeryGrn.Pages.AddGRN.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages/AddGRN.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages/AddGRN.xaml
+
+[/var/lib/freelancer/projects/40264069/GRNPOS/GRNPOS-main/RoyalBakeryGrn/RoyalBakeryGrn/Pages/AdjustmentRequestsListPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RoyalBakeryGrn.Pages.AdjustmentRequestsListPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages/AdjustmentRequestsListPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages/AdjustmentRequestsListPage.xaml
+
+[/var/lib/freelancer/projects/40264069/GRNPOS/GRNPOS-main/RoyalBakeryGrn/RoyalBakeryGrn/Pages/ClearancePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RoyalBakeryGrn.Pages.ClearancePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages/ClearancePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages/ClearancePage.xaml
+
+[/var/lib/freelancer/projects/40264069/GRNPOS/GRNPOS-main/RoyalBakeryGrn/RoyalBakeryGrn/Pages/EditGRNPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RoyalBakeryGrn.Pages.EditGRNPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages/EditGRNPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages/EditGRNPage.xaml
+
+[/var/lib/freelancer/projects/40264069/GRNPOS/GRNPOS-main/RoyalBakeryGrn/RoyalBakeryGrn/Pages/MainPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RoyalBakeryGrn.Pages.MainPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages/MainPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages/MainPage.xaml
+
+[/var/lib/freelancer/projects/40264069/GRNPOS/GRNPOS-main/RoyalBakeryGrn/RoyalBakeryGrn/Pages/SettingsPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RoyalBakeryGrn.Pages.SettingsPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages/SettingsPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages/SettingsPage.xaml
+
+[/var/lib/freelancer/projects/40264069/GRNPOS/GRNPOS-main/RoyalBakeryGrn/RoyalBakeryGrn/Pages/StockManagePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RoyalBakeryGrn.Pages.StockManagePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages/StockManagePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages/StockManagePage.xaml
+
+[/var/lib/freelancer/projects/40264069/GRNPOS/GRNPOS-main/RoyalBakeryGrn/RoyalBakeryGrn/Resources/Styles/Colors.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RoyalBakeryGrn.Resources.Styles.Colors.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources/Styles/Colors.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources/Styles/Colors.xaml
+
+[/var/lib/freelancer/projects/40264069/GRNPOS/GRNPOS-main/RoyalBakeryGrn/RoyalBakeryGrn/Resources/Styles/Styles.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RoyalBakeryGrn.Resources.Styles.Styles.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources/Styles/Styles.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources/Styles/Styles.xaml

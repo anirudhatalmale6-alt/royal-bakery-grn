@@ -1,0 +1,16 @@
+C:\Users\user\source\repos\RoyalBakeryGrn\RoyalBakeryGrn.EF\obj\Release\net9.0-android\.NETCoreApp,Version=v9.0.AssemblyAttributes.cs
+C:\Users\user\source\repos\RoyalBakeryGrn\RoyalBakeryGrn.EF\obj\Release\net9.0-android\build.props
+C:\Users\user\source\repos\RoyalBakeryGrn\RoyalBakeryGrn.EF\obj\Release\net9.0-android\adb.props
+C:\Users\user\source\repos\RoyalBakeryGrn\RoyalBakeryGrn.EF\obj\Release\net9.0-android\_CompileBindingJava.FileList.txt
+C:\Users\user\source\repos\RoyalBakeryGrn\RoyalBakeryGrn.EF\obj\Release\net9.0-android\RoyalBakeryGrn.EF.csproj.AssemblyReference.cache
+C:\Users\user\source\repos\RoyalBakeryGrn\RoyalBakeryGrn.EF\obj\Release\net9.0-android\libraryprojectimports.cache
+C:\Users\user\source\repos\RoyalBakeryGrn\RoyalBakeryGrn.EF\obj\Release\net9.0-android\stamp\_BuildLibraryImportsCache.stamp
+C:\Users\user\source\repos\RoyalBakeryGrn\RoyalBakeryGrn.EF\obj\Release\net9.0-android\__Microsoft.Android.Resource.Designer.cs
+C:\Users\user\source\repos\RoyalBakeryGrn\RoyalBakeryGrn.EF\obj\Release\net9.0-android\res.flag
+C:\Users\user\source\repos\RoyalBakeryGrn\RoyalBakeryGrn.EF\obj\Release\net9.0-android\R.txt
+C:\Users\user\source\repos\RoyalBakeryGrn\RoyalBakeryGrn.EF\obj\Release\net9.0-android\_Microsoft.Android.Resource.Designer.dll
+C:\Users\user\source\repos\RoyalBakeryGrn\RoyalBakeryGrn.EF\obj\Release\net9.0-android\R.cs.flag
+C:\Users\user\source\repos\RoyalBakeryGrn\RoyalBakeryGrn.EF\obj\Release\net9.0-android\RoyalBakeryGrn.EF.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\source\repos\RoyalBakeryGrn\RoyalBakeryGrn.EF\obj\Release\net9.0-android\RoyalBakeryGrn.EF.AssemblyInfoInputs.cache
+C:\Users\user\source\repos\RoyalBakeryGrn\RoyalBakeryGrn.EF\obj\Release\net9.0-android\RoyalBakeryGrn.EF.AssemblyInfo.cs
+C:\Users\user\source\repos\RoyalBakeryGrn\RoyalBakeryGrn.EF\obj\Release\net9.0-android\RoyalBakeryGrn.EF.csproj.CoreCompileInputs.cache
