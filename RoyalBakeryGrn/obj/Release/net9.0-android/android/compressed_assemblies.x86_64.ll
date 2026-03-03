@@ -406,7 +406,7 @@ target triple = "x86_64-unknown-linux-android21"
 		ptr @__compressedAssemblyData_76; uint8_t* data
 	}, ; 76: Xamarin.KotlinX.Serialization.Core.Jvm
 	%struct.CompressedAssemblyDescriptor {
-		i32 176640, ; uint32_t uncompressed_file_size
+		i32 185856, ; uint32_t uncompressed_file_size
 		i1 false, ; bool loaded
 		ptr @__compressedAssemblyData_77; uint8_t* data
 	}, ; 77: RoyalBakeryGrn
@@ -694,7 +694,7 @@ target triple = "x86_64-unknown-linux-android21"
 @__compressedAssemblyData_74 = internal dso_local global [86016 x i8] zeroinitializer, align 16
 @__compressedAssemblyData_75 = internal dso_local global [18432 x i8] zeroinitializer, align 16
 @__compressedAssemblyData_76 = internal dso_local global [89600 x i8] zeroinitializer, align 16
-@__compressedAssemblyData_77 = internal dso_local global [176640 x i8] zeroinitializer, align 16
+@__compressedAssemblyData_77 = internal dso_local global [185856 x i8] zeroinitializer, align 16
 @__compressedAssemblyData_78 = internal dso_local global [24064 x i8] zeroinitializer, align 16
 @__compressedAssemblyData_79 = internal dso_local global [14848 x i8] zeroinitializer, align 16
 @__compressedAssemblyData_80 = internal dso_local global [9216 x i8] zeroinitializer, align 16

@@ -4,6 +4,12 @@
         <name>RoyalBakeryGrn</name>
     </assembly>
     <members>
+        <member name="P:RoyalBakeryGrn.Models.GrnItemDto.SoldQuantity">
+            <summary>Sold = Original Quantity - Current Remaining</summary>
+        </member>
+        <member name="P:RoyalBakeryGrn.Models.GrnItemDto.SoldInfo">
+            <summary>Display string for the UI</summary>
+        </member>
         <member name="T:RoyalBakeryGrn.Resource">
             <summary>
             Android Resource Designer class.

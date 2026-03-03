@@ -54,6 +54,12 @@ build_metadata.AdditionalFiles.ManifestResourceName = RoyalBakeryGrn.Pages.EditG
 build_metadata.AdditionalFiles.TargetPath = Pages/EditGRNPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Pages/EditGRNPage.xaml
 
+[/var/lib/freelancer/projects/40264069/GRNPOS/GRNPOS-main/RoyalBakeryGrn/RoyalBakeryGrn/Pages/LoginPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RoyalBakeryGrn.Pages.LoginPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages/LoginPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages/LoginPage.xaml
+
 [/var/lib/freelancer/projects/40264069/GRNPOS/GRNPOS-main/RoyalBakeryGrn/RoyalBakeryGrn/Pages/MainPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = RoyalBakeryGrn.Pages.MainPage.xaml
