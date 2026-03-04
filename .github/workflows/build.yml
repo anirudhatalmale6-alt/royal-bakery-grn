@@ -8,6 +8,8 @@ on:
 jobs:
   build-grn-apk:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -30,6 +32,21 @@ jobs:
 
       - name: Publish APK
         run: dotnet publish RoyalBakeryGrn/RoyalBakeryGrn.csproj -c Release -f net9.0-android -o publish/grn
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.3
+          name: v1.3 - Login Screen Fix
+          body: |
+            ## Changes in v1.3
+            - Fixed login screen alignment on Lenovo tablet (centered, responsive width)
+
+            ## Downloads
+            - **RoyalBakeryGRN-v1.3.apk** — Android APK
+          files: publish/grn/*.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
