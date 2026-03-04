@@ -36,14 +36,16 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v1.3
-          name: v1.3 - Login Screen Fix
+          tag_name: v1.5
+          name: v1.5 - Login UI Redesign for Lenovo Tab 7
           body: |
-            ## Changes in v1.3
-            - Fixed login screen alignment on Lenovo tablet (centered, responsive width)
+            ## Changes in v1.5
+            - Login page completely redesigned: centered card layout, clean UI
+            - Optimized for Lenovo Tab 7 (7-inch screen)
+            - Proper vertical + horizontal centering
 
             ## Downloads
-            - **RoyalBakeryGRN-v1.3.apk** — Android APK
+            - **RoyalBakeryGRN APK** — Android APK
           files: publish/grn/*.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
