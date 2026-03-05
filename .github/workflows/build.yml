@@ -36,13 +36,16 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v1.5
-          name: v1.5 - Login UI Redesign for Lenovo Tab 7
+          tag_name: v1.6
+          name: v1.6 - Searchable Dropdowns + Direct GRN Edit
           body: |
-            ## Changes in v1.5
-            - Login page completely redesigned: centered card layout, clean UI
-            - Optimized for Lenovo Tab 7 (7-inch screen)
-            - Proper vertical + horizontal centering
+            ## Changes in v1.6
+            - **Add GRN**: Replaced plain dropdown with searchable item selector (type to filter)
+            - **Stock Manage (Clearance)**: Fixed dropdown selection bug (items not selecting on tap)
+            - **Edit GRN**: Direct editing — no more admin code/approval flow required
+            - **Edit History**: Shows today's edit history with reasons when loading a GRN
+            - "Adjust GRN" renamed to "Edit GRN" on dashboard
+            - All previous fixes included
 
             ## Downloads
             - **RoyalBakeryGRN APK** — Android APK

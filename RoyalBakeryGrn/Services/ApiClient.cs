@@ -161,6 +161,38 @@ namespace RoyalBakeryGrn.Services
             return "Changes applied and GRN updated!";
         }
 
+        // ===== Direct GRN Edit =====
+        public async Task<string> DirectEditGrnAsync(int grnId, DirectEditGrnRequest request)
+        {
+            var resp = await _http.PutAsJsonAsync($"api/grn/{grnId}", request, _jsonOptions);
+            var body = await resp.Content.ReadAsStringAsync();
+            if (!resp.IsSuccessStatusCode)
+            {
+                try
+                {
+                    var err = JsonSerializer.Deserialize<ApiError>(body, _jsonOptions);
+                    throw new Exception(err?.Message ?? body);
+                }
+                catch (JsonException)
+                {
+                    throw new Exception(body);
+                }
+            }
+            try
+            {
+                var result = JsonSerializer.Deserialize<ApiError>(body, _jsonOptions);
+                return result?.Message ?? "GRN updated successfully";
+            }
+            catch { return "GRN updated successfully"; }
+        }
+
+        public async Task<List<GrnEditLogDto>> GetGrnEditsAsync(int grnId)
+        {
+            var resp = await _http.GetAsync($"api/grn/{grnId}/edits");
+            resp.EnsureSuccessStatusCode();
+            return await resp.Content.ReadFromJsonAsync<List<GrnEditLogDto>>(_jsonOptions) ?? new();
+        }
+
         // ===== Clearance =====
         public async Task<List<ClearanceDto>> GetTodayClearancesAsync()
         {

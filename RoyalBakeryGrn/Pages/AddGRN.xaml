@@ -25,8 +25,36 @@
                            FontFamily="PoppinsBold"
                            TextColor="#212121"/>
 
-                    <Picker x:Name="ItemPicker"
-                            Title="Select Item" />
+                    <!-- Searchable item selector -->
+                    <SearchBar x:Name="ItemSearchBar"
+                               Placeholder="Search item..."
+                               TextChanged="ItemSearchBar_TextChanged"/>
+
+                    <CollectionView x:Name="ItemSearchResults"
+                                    HeightRequest="150"
+                                    SelectionMode="Single"
+                                    IsVisible="False"
+                                    SelectionChanged="ItemSearchResults_SelectionChanged">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame Padding="10"
+                                       Margin="2"
+                                       BackgroundColor="#E0F2F1"
+                                       CornerRadius="8">
+                                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                                        <Label Text="{Binding Name}"
+                                               FontFamily="PoppinsRegular"
+                                               VerticalOptions="Center"/>
+                                        <Label Grid.Column="1"
+                                               Text="{Binding Price, StringFormat='Rs. {0:F2}'}"
+                                               FontFamily="PoppinsRegular"
+                                               TextColor="#757575"
+                                               VerticalOptions="Center"/>
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
 
                     <Entry x:Name="QuantityEntry"
                            Placeholder="Enter Quantity"

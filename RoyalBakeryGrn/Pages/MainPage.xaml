@@ -67,7 +67,7 @@
            HasShadow="True">
                     <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
                         <Label Text="✏️" FontSize="36" HorizontalOptions="Center"/>
-                        <Label Text="Adjust GRN" FontFamily="PoppinsBold" FontSize="18" HorizontalOptions="Center"/>
+                        <Label Text="Edit GRN" FontFamily="PoppinsBold" FontSize="18" HorizontalOptions="Center"/>
                     </VerticalStackLayout>
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Tapped="AdjustGRNCard_Tapped"/>

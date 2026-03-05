@@ -10,6 +10,7 @@ namespace RoyalBakeryGrn.Pages
         private ObservableCollection<ClearanceDto> _todayClearances = new();
         private List<MenuItemDto> _allMenuItems = new();
         private MenuItemDto? _selectedMenuItem;
+        private bool _suppressSearch = false;
 
         public ClearancePage(ApiClient api)
         {
@@ -30,7 +31,6 @@ namespace RoyalBakeryGrn.Pages
             try
             {
                 _allMenuItems = await _api.GetMenuItemsAsync();
-                MenuItemResultsCollection.ItemsSource = _allMenuItems;
             }
             catch (Exception ex)
             {
@@ -55,13 +55,15 @@ namespace RoyalBakeryGrn.Pages
 
         private void MenuItemSearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (_suppressSearch) return;
+
             var keyword = e.NewTextValue?.Trim() ?? "";
+            _selectedMenuItem = null;
 
             if (string.IsNullOrWhiteSpace(keyword))
             {
                 MenuItemResultsCollection.IsVisible = false;
                 MenuItemResultsCollection.ItemsSource = new List<MenuItemDto>();
-                _selectedMenuItem = null;
             }
             else
             {
@@ -79,8 +81,11 @@ namespace RoyalBakeryGrn.Pages
             if (e.CurrentSelection.FirstOrDefault() is MenuItemDto selected)
             {
                 _selectedMenuItem = selected;
+                _suppressSearch = true;
                 MenuItemSearchBar.Text = selected.Name;
-                MenuItemResultsCollection.ItemsSource = new List<MenuItemDto>();
+                _suppressSearch = false;
+                MenuItemResultsCollection.IsVisible = false;
+                MenuItemResultsCollection.SelectedItem = null;
             }
         }
 
@@ -121,7 +126,9 @@ namespace RoyalBakeryGrn.Pages
                 QuantityEntry.Text = string.Empty;
                 ReasonEntry.Text = string.Empty;
                 NoteEditor.Text = string.Empty;
+                _suppressSearch = true;
                 MenuItemSearchBar.Text = string.Empty;
+                _suppressSearch = false;
                 _selectedMenuItem = null;
             }
             catch (Exception ex)

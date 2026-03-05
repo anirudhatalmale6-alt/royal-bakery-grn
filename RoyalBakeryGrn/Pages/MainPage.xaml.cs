@@ -27,7 +27,7 @@ namespace RoyalBakeryGrn.Pages
 
         private async void AdjustGRNCard_Tapped(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AdjustmentRequestsListPage(_api));
+            await Navigation.PushAsync(new EditGRNPage(_api));
         }
 
         private async void StockManageCard_Tapped(object sender, EventArgs e)

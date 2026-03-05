@@ -8,6 +8,8 @@ namespace RoyalBakeryGrn.Pages
     {
         private readonly ApiClient _api;
         private List<MenuItemDto> _menuItems = new();
+        private MenuItemDto? _selectedItem;
+        private bool _suppressSearch = false;
         private ObservableCollection<GrnItemViewModel> GRNItems { get; set; } = new();
 
         public AddGRN(ApiClient api)
@@ -28,8 +30,6 @@ namespace RoyalBakeryGrn.Pages
             try
             {
                 _menuItems = await _api.GetMenuItemsAsync();
-                ItemPicker.ItemsSource = _menuItems;
-                ItemPicker.ItemDisplayBinding = new Binding("Name");
             }
             catch (Exception ex)
             {
@@ -37,12 +37,47 @@ namespace RoyalBakeryGrn.Pages
             }
         }
 
+        private void ItemSearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (_suppressSearch) return;
+
+            var keyword = e.NewTextValue?.Trim() ?? "";
+            _selectedItem = null;
+
+            if (string.IsNullOrWhiteSpace(keyword))
+            {
+                ItemSearchResults.IsVisible = false;
+                ItemSearchResults.ItemsSource = new List<MenuItemDto>();
+            }
+            else
+            {
+                var filtered = _menuItems
+                    .Where(i => i.Name.Contains(keyword, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+
+                ItemSearchResults.ItemsSource = filtered;
+                ItemSearchResults.IsVisible = filtered.Any();
+            }
+        }
+
+        private void ItemSearchResults_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.CurrentSelection.FirstOrDefault() is MenuItemDto selected)
+            {
+                _selectedItem = selected;
+                _suppressSearch = true;
+                ItemSearchBar.Text = selected.Name;
+                _suppressSearch = false;
+                ItemSearchResults.IsVisible = false;
+                ItemSearchResults.SelectedItem = null;
+            }
+        }
+
         private void AddToGRN_Clicked(object sender, EventArgs e)
         {
-            var selectedItem = ItemPicker.SelectedItem as MenuItemDto;
-            if (selectedItem == null)
+            if (_selectedItem == null)
             {
-                DisplayAlert("Error", "Please select an item.", "OK");
+                DisplayAlert("Error", "Please search and select an item.", "OK");
                 return;
             }
 
@@ -52,11 +87,10 @@ namespace RoyalBakeryGrn.Pages
                 return;
             }
 
-            var existing = GRNItems.FirstOrDefault(x => x.MenuItemId == selectedItem.Id);
+            var existing = GRNItems.FirstOrDefault(x => x.MenuItemId == _selectedItem.Id);
             if (existing != null)
             {
                 existing.Quantity += quantity;
-                // Refresh binding
                 var idx = GRNItems.IndexOf(existing);
                 GRNItems[idx] = existing;
             }
@@ -64,15 +98,18 @@ namespace RoyalBakeryGrn.Pages
             {
                 GRNItems.Add(new GrnItemViewModel
                 {
-                    MenuItemId = selectedItem.Id,
-                    ItemName = selectedItem.Name,
+                    MenuItemId = _selectedItem.Id,
+                    ItemName = _selectedItem.Name,
                     Quantity = quantity,
-                    Price = selectedItem.Price
+                    Price = _selectedItem.Price
                 });
             }
 
             QuantityEntry.Text = string.Empty;
-            ItemPicker.SelectedIndex = -1;
+            _suppressSearch = true;
+            ItemSearchBar.Text = string.Empty;
+            _suppressSearch = false;
+            _selectedItem = null;
         }
 
         private void RemoveGRNItem_Clicked(object sender, EventArgs e)

@@ -36,11 +36,11 @@ namespace RoyalBakeryGrn.Pages
             }
         }
 
-        private void LoadGRNItems_Clicked(object sender, EventArgs e)
+        private async void LoadGRNItems_Clicked(object sender, EventArgs e)
         {
             if (GRNPicker.SelectedItem is not GrnDto grn)
             {
-                DisplayAlert("Error", "Select a GRN first", "OK");
+                await DisplayAlert("Error", "Select a GRN first", "OK");
                 return;
             }
 
@@ -57,6 +57,30 @@ namespace RoyalBakeryGrn.Pages
 
             AdjustmentItemsView.ItemsSource = null;
             AdjustmentItemsView.ItemsSource = _editableItems;
+
+            // Load today's edit history for this GRN
+            await LoadEditHistory(grn.Id);
+        }
+
+        private async Task LoadEditHistory(int grnId)
+        {
+            try
+            {
+                var edits = await _api.GetGrnEditsAsync(grnId);
+                if (edits.Any())
+                {
+                    EditHistoryView.ItemsSource = edits;
+                    EditHistoryFrame.IsVisible = true;
+                }
+                else
+                {
+                    EditHistoryFrame.IsVisible = false;
+                }
+            }
+            catch
+            {
+                EditHistoryFrame.IsVisible = false;
+            }
         }
 
         private void RemoveAdjustmentItem_Clicked(object sender, EventArgs e)
@@ -69,7 +93,7 @@ namespace RoyalBakeryGrn.Pages
             }
         }
 
-        private async void SaveAdjustmentRequest_Clicked(object sender, EventArgs e)
+        private async void SaveDirectEdit_Clicked(object sender, EventArgs e)
         {
             if (_selectedGRN == null)
             {
@@ -79,11 +103,11 @@ namespace RoyalBakeryGrn.Pages
 
             if (string.IsNullOrWhiteSpace(ReasonEntry.Text))
             {
-                await DisplayAlert("Error", "Enter a reason", "OK");
+                await DisplayAlert("Error", "Enter a reason for the edit", "OK");
                 return;
             }
 
-            // Validate: cannot reduce quantity below already-sold amount
+            // Client-side validation: cannot reduce below sold quantity
             foreach (var item in _editableItems)
             {
                 var original = _selectedGRN.Items.FirstOrDefault(o => o.MenuItemId == item.MenuItemId);
@@ -103,9 +127,8 @@ namespace RoyalBakeryGrn.Pages
 
             try
             {
-                var request = new CreateAdjustmentRequest
+                var request = new DirectEditGrnRequest
                 {
-                    GRNId = _selectedGRN.Id,
                     Reason = ReasonEntry.Text.Trim(),
                     Items = _editableItems.Select(i => new AdjustmentItemDto
                     {
@@ -116,12 +139,38 @@ namespace RoyalBakeryGrn.Pages
                     }).ToList()
                 };
 
-                var result = await _api.CreateAdjustmentAsync(request);
-                await DisplayAlert("Success", $"Adjustment request saved. Admin code: {result.AdminCode}", "OK");
-                AdjustmentItemsView.ItemsSource = null;
+                var result = await _api.DirectEditGrnAsync(_selectedGRN.Id, request);
+                await DisplayAlert("Success", result, "OK");
+
+                // Refresh GRN data and edit history
+                await LoadGRNs();
                 ReasonEntry.Text = string.Empty;
-                _selectedGRN = null;
-                _editableItems.Clear();
+
+                // Reload the same GRN to show updated items + edit history
+                var refreshed = _grns.FirstOrDefault(g => g.Id == _selectedGRN.Id);
+                if (refreshed != null)
+                {
+                    _selectedGRN = refreshed;
+                    _editableItems = refreshed.Items.Select(i => new GrnItemDto
+                    {
+                        Id = i.Id,
+                        MenuItemId = i.MenuItemId,
+                        ItemName = i.ItemName,
+                        Quantity = i.Quantity,
+                        Price = i.Price,
+                        CurrentQuantity = i.CurrentQuantity
+                    }).ToList();
+                    AdjustmentItemsView.ItemsSource = null;
+                    AdjustmentItemsView.ItemsSource = _editableItems;
+                    await LoadEditHistory(_selectedGRN.Id);
+                }
+                else
+                {
+                    AdjustmentItemsView.ItemsSource = null;
+                    _selectedGRN = null;
+                    _editableItems.Clear();
+                    EditHistoryFrame.IsVisible = false;
+                }
             }
             catch (Exception ex)
             {
