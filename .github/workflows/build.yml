@@ -36,15 +36,13 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v1.6
-          name: v1.6 - Searchable Dropdowns + Direct GRN Edit
+          tag_name: v1.7
+          name: v1.7 - Dropdown Touch Fix (ListView)
           body: |
-            ## Changes in v1.6
-            - **Add GRN**: Replaced plain dropdown with searchable item selector (type to filter)
-            - **Stock Manage (Clearance)**: Fixed dropdown selection bug (items not selecting on tap)
-            - **Edit GRN**: Direct editing — no more admin code/approval flow required
-            - **Edit History**: Shows today's edit history with reasons when loading a GRN
-            - "Adjust GRN" renamed to "Edit GRN" on dashboard
+            ## Changes in v1.7
+            - **Add GRN**: Replaced CollectionView with ListView for reliable touch selection on Android tablets
+            - **Stock Manage (Clearance)**: Same fix — ListView with ItemTapped for reliable item selection
+            - Dropdown items now have larger touch targets (bigger font, more padding)
             - All previous fixes included
 
             ## Downloads

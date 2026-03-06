@@ -76,16 +76,16 @@ namespace RoyalBakeryGrn.Pages
             }
         }
 
-        private void MenuItemResultsCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void MenuItemResultsCollection_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            if (e.CurrentSelection.FirstOrDefault() is MenuItemDto selected)
+            if (e.Item is MenuItemDto selected)
             {
                 _selectedMenuItem = selected;
                 _suppressSearch = true;
                 MenuItemSearchBar.Text = selected.Name;
                 _suppressSearch = false;
                 MenuItemResultsCollection.IsVisible = false;
-                MenuItemResultsCollection.SelectedItem = null;
+                ((ListView)sender).SelectedItem = null;
             }
         }
 
