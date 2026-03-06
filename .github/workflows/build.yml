@@ -36,13 +36,15 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v1.8
-          name: v1.8 - Search Crash Fix
+          tag_name: v1.9
+          name: v1.9 - Search Crash Fix (No ListView)
           body: |
-            ## Changes in v1.8
-            - **CRITICAL FIX**: Fixed app crash when searching items — used stable ObservableCollection instead of swapping ItemsSource on each keystroke
-            - ListView with ItemTapped for reliable touch selection on Android tablets
-            - Results limited to 20 items for smooth scrolling
+            ## Changes in v1.9
+            - **CRITICAL FIX**: Completely removed ListView/CollectionView for search dropdowns — replaced with plain VerticalStackLayout + TapGestureRecognizer
+            - No data binding, no virtualization, no ItemsSource — just simple native views that are bulletproof on Android
+            - Both Add GRN and Stock Management (Clearance) pages use the new approach
+            - SearchBar replaced with Entry for better compatibility
+            - Results limited to 15 items, each with large touch targets
             - All previous fixes included
 
             ## Downloads

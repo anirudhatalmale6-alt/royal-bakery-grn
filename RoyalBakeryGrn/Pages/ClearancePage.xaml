@@ -25,30 +25,18 @@
                            TextColor="#212121"/>
 
                     <!-- Searchable Picker -->
-                    <SearchBar x:Name="MenuItemSearchBar"
-                               Placeholder="Search menu item..."
-                               TextChanged="MenuItemSearchBar_TextChanged"/>
+                    <Entry x:Name="MenuItemSearchEntry"
+                           Placeholder="Type to search menu item..."
+                           TextChanged="MenuItemSearchEntry_TextChanged"
+                           FontSize="16"
+                           FontFamily="PoppinsRegular"/>
 
-                    <ListView x:Name="MenuItemResultsCollection"
-                              HeightRequest="200"
-                              IsVisible="False"
-                              HasUnevenRows="True"
-                              ItemTapped="MenuItemResultsCollection_ItemTapped"
-                              SeparatorVisibility="None"
-                              BackgroundColor="Transparent">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <Frame Padding="12,10"
-                                           Margin="2"
-                                           BackgroundColor="#E0F2F1"
-                                           CornerRadius="8">
-                                        <Label Text="{Binding Name}" FontFamily="PoppinsRegular" FontSize="16"/>
-                                    </Frame>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                    <ScrollView x:Name="MenuItemSearchScroll"
+                                HeightRequest="200"
+                                IsVisible="False">
+                        <VerticalStackLayout x:Name="MenuItemResultsStack"
+                                             Spacing="4"/>
+                    </ScrollView>
 
                     <!-- Quantity -->
                     <Entry x:Name="QuantityEntry"

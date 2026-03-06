@@ -11,14 +11,12 @@ namespace RoyalBakeryGrn.Pages
         private List<MenuItemDto> _allMenuItems = new();
         private MenuItemDto? _selectedMenuItem;
         private bool _suppressSearch = false;
-        private ObservableCollection<MenuItemDto> _filteredItems = new();
 
         public ClearancePage(ApiClient api)
         {
             InitializeComponent();
             _api = api;
             ClearanceCollectionView.ItemsSource = _todayClearances;
-            MenuItemResultsCollection.ItemsSource = _filteredItems;
         }
 
         protected override async void OnAppearing()
@@ -55,40 +53,69 @@ namespace RoyalBakeryGrn.Pages
             }
         }
 
-        private void MenuItemSearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        private void MenuItemSearchEntry_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (_suppressSearch) return;
 
             var keyword = e.NewTextValue?.Trim() ?? "";
             _selectedMenuItem = null;
 
-            _filteredItems.Clear();
+            MenuItemResultsStack.Children.Clear();
 
-            if (!string.IsNullOrWhiteSpace(keyword))
+            if (string.IsNullOrWhiteSpace(keyword) || keyword.Length < 1)
             {
-                var filtered = _allMenuItems
-                    .Where(i => i.Name.Contains(keyword, StringComparison.OrdinalIgnoreCase))
-                    .Take(20)
-                    .ToList();
-
-                foreach (var item in filtered)
-                    _filteredItems.Add(item);
+                MenuItemSearchScroll.IsVisible = false;
+                return;
             }
 
-            MenuItemResultsCollection.IsVisible = _filteredItems.Count > 0;
+            var filtered = _allMenuItems
+                .Where(i => i.Name.Contains(keyword, StringComparison.OrdinalIgnoreCase))
+                .Take(15)
+                .ToList();
+
+            if (filtered.Count == 0)
+            {
+                MenuItemSearchScroll.IsVisible = false;
+                return;
+            }
+
+            foreach (var item in filtered)
+            {
+                var frame = new Frame
+                {
+                    Padding = new Thickness(14, 12),
+                    Margin = new Thickness(0, 1),
+                    BackgroundColor = Color.FromArgb("#E0F2F1"),
+                    CornerRadius = 8,
+                    HasShadow = false
+                };
+
+                frame.Content = new Label
+                {
+                    Text = item.Name,
+                    FontSize = 16,
+                    TextColor = Color.FromArgb("#004D40")
+                };
+
+                var tapGesture = new TapGestureRecognizer();
+                var capturedItem = item;
+                tapGesture.Tapped += (s, args) => OnMenuItemSelected(capturedItem);
+                frame.GestureRecognizers.Add(tapGesture);
+
+                MenuItemResultsStack.Children.Add(frame);
+            }
+
+            MenuItemSearchScroll.IsVisible = true;
         }
 
-        private void MenuItemResultsCollection_ItemTapped(object sender, ItemTappedEventArgs e)
+        private void OnMenuItemSelected(MenuItemDto selected)
         {
-            if (e.Item is MenuItemDto selected)
-            {
-                _selectedMenuItem = selected;
-                _suppressSearch = true;
-                MenuItemSearchBar.Text = selected.Name;
-                _suppressSearch = false;
-                MenuItemResultsCollection.IsVisible = false;
-                ((ListView)sender).SelectedItem = null;
-            }
+            _selectedMenuItem = selected;
+            _suppressSearch = true;
+            MenuItemSearchEntry.Text = selected.Name;
+            _suppressSearch = false;
+            MenuItemResultsStack.Children.Clear();
+            MenuItemSearchScroll.IsVisible = false;
         }
 
         private async void SubmitClearance_Clicked(object sender, EventArgs e)
@@ -129,11 +156,11 @@ namespace RoyalBakeryGrn.Pages
                 ReasonEntry.Text = string.Empty;
                 NoteEditor.Text = string.Empty;
                 _suppressSearch = true;
-                MenuItemSearchBar.Text = string.Empty;
+                MenuItemSearchEntry.Text = string.Empty;
                 _suppressSearch = false;
                 _selectedMenuItem = null;
-                _filteredItems.Clear();
-                MenuItemResultsCollection.IsVisible = false;
+                MenuItemResultsStack.Children.Clear();
+                MenuItemSearchScroll.IsVisible = false;
             }
             catch (Exception ex)
             {

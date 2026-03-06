@@ -26,41 +26,18 @@
                            TextColor="#212121"/>
 
                     <!-- Searchable item selector -->
-                    <SearchBar x:Name="ItemSearchBar"
-                               Placeholder="Search item..."
-                               TextChanged="ItemSearchBar_TextChanged"/>
+                    <Entry x:Name="ItemSearchEntry"
+                           Placeholder="Type to search item..."
+                           TextChanged="ItemSearchEntry_TextChanged"
+                           FontSize="16"
+                           FontFamily="PoppinsRegular"/>
 
-                    <ListView x:Name="ItemSearchResults"
-                              HeightRequest="200"
-                              IsVisible="False"
-                              HasUnevenRows="True"
-                              ItemTapped="ItemSearchResults_ItemTapped"
-                              SeparatorVisibility="None"
-                              BackgroundColor="Transparent">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <Frame Padding="12,10"
-                                           Margin="2"
-                                           BackgroundColor="#E0F2F1"
-                                           CornerRadius="8">
-                                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
-                                            <Label Text="{Binding Name}"
-                                                   FontFamily="PoppinsRegular"
-                                                   FontSize="16"
-                                                   VerticalOptions="Center"/>
-                                            <Label Grid.Column="1"
-                                                   Text="{Binding Price, StringFormat='Rs. {0:F2}'}"
-                                                   FontFamily="PoppinsRegular"
-                                                   FontSize="14"
-                                                   TextColor="#757575"
-                                                   VerticalOptions="Center"/>
-                                        </Grid>
-                                    </Frame>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                    <ScrollView x:Name="ItemSearchScroll"
+                                HeightRequest="200"
+                                IsVisible="False">
+                        <VerticalStackLayout x:Name="ItemSearchResultsStack"
+                                             Spacing="4"/>
+                    </ScrollView>
 
                     <Entry x:Name="QuantityEntry"
                            Placeholder="Enter Quantity"

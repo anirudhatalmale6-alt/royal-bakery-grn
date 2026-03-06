@@ -11,14 +11,12 @@ namespace RoyalBakeryGrn.Pages
         private MenuItemDto? _selectedItem;
         private bool _suppressSearch = false;
         private ObservableCollection<GrnItemViewModel> GRNItems { get; set; } = new();
-        private ObservableCollection<MenuItemDto> _filteredItems = new();
 
         public AddGRN(ApiClient api)
         {
             InitializeComponent();
             _api = api;
             GRNListView.ItemsSource = GRNItems;
-            ItemSearchResults.ItemsSource = _filteredItems;
         }
 
         protected override async void OnAppearing()
@@ -39,40 +37,86 @@ namespace RoyalBakeryGrn.Pages
             }
         }
 
-        private void ItemSearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        private void ItemSearchEntry_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (_suppressSearch) return;
 
             var keyword = e.NewTextValue?.Trim() ?? "";
             _selectedItem = null;
 
-            _filteredItems.Clear();
+            ItemSearchResultsStack.Children.Clear();
 
-            if (!string.IsNullOrWhiteSpace(keyword))
+            if (string.IsNullOrWhiteSpace(keyword) || keyword.Length < 1)
             {
-                var filtered = _menuItems
-                    .Where(i => i.Name.Contains(keyword, StringComparison.OrdinalIgnoreCase))
-                    .Take(20)
-                    .ToList();
-
-                foreach (var item in filtered)
-                    _filteredItems.Add(item);
+                ItemSearchScroll.IsVisible = false;
+                return;
             }
 
-            ItemSearchResults.IsVisible = _filteredItems.Count > 0;
+            var filtered = _menuItems
+                .Where(i => i.Name.Contains(keyword, StringComparison.OrdinalIgnoreCase))
+                .Take(15)
+                .ToList();
+
+            if (filtered.Count == 0)
+            {
+                ItemSearchScroll.IsVisible = false;
+                return;
+            }
+
+            foreach (var item in filtered)
+            {
+                var frame = new Frame
+                {
+                    Padding = new Thickness(14, 12),
+                    Margin = new Thickness(0, 1),
+                    BackgroundColor = Color.FromArgb("#E0F2F1"),
+                    CornerRadius = 8,
+                    HasShadow = false
+                };
+
+                var grid = new Grid
+                {
+                    ColumnDefinitions = { new ColumnDefinition(GridLength.Star), new ColumnDefinition(GridLength.Auto) },
+                    ColumnSpacing = 10
+                };
+
+                grid.Add(new Label
+                {
+                    Text = item.Name,
+                    FontSize = 16,
+                    TextColor = Color.FromArgb("#004D40"),
+                    VerticalOptions = LayoutOptions.Center
+                }, 0);
+
+                grid.Add(new Label
+                {
+                    Text = $"Rs. {item.Price:F2}",
+                    FontSize = 14,
+                    TextColor = Color.FromArgb("#757575"),
+                    VerticalOptions = LayoutOptions.Center
+                }, 1);
+
+                frame.Content = grid;
+
+                var tapGesture = new TapGestureRecognizer();
+                var capturedItem = item; // capture for closure
+                tapGesture.Tapped += (s, args) => OnItemSelected(capturedItem);
+                frame.GestureRecognizers.Add(tapGesture);
+
+                ItemSearchResultsStack.Children.Add(frame);
+            }
+
+            ItemSearchScroll.IsVisible = true;
         }
 
-        private void ItemSearchResults_ItemTapped(object sender, ItemTappedEventArgs e)
+        private void OnItemSelected(MenuItemDto selected)
         {
-            if (e.Item is MenuItemDto selected)
-            {
-                _selectedItem = selected;
-                _suppressSearch = true;
-                ItemSearchBar.Text = selected.Name;
-                _suppressSearch = false;
-                ItemSearchResults.IsVisible = false;
-                ((ListView)sender).SelectedItem = null;
-            }
+            _selectedItem = selected;
+            _suppressSearch = true;
+            ItemSearchEntry.Text = selected.Name;
+            _suppressSearch = false;
+            ItemSearchResultsStack.Children.Clear();
+            ItemSearchScroll.IsVisible = false;
         }
 
         private void AddToGRN_Clicked(object sender, EventArgs e)
@@ -109,11 +153,11 @@ namespace RoyalBakeryGrn.Pages
 
             QuantityEntry.Text = string.Empty;
             _suppressSearch = true;
-            ItemSearchBar.Text = string.Empty;
+            ItemSearchEntry.Text = string.Empty;
             _suppressSearch = false;
             _selectedItem = null;
-            _filteredItems.Clear();
-            ItemSearchResults.IsVisible = false;
+            ItemSearchResultsStack.Children.Clear();
+            ItemSearchScroll.IsVisible = false;
         }
 
         private void RemoveGRNItem_Clicked(object sender, EventArgs e)
