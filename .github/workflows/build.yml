@@ -36,13 +36,13 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v1.7
-          name: v1.7 - Dropdown Touch Fix (ListView)
+          tag_name: v1.8
+          name: v1.8 - Search Crash Fix
           body: |
-            ## Changes in v1.7
-            - **Add GRN**: Replaced CollectionView with ListView for reliable touch selection on Android tablets
-            - **Stock Manage (Clearance)**: Same fix — ListView with ItemTapped for reliable item selection
-            - Dropdown items now have larger touch targets (bigger font, more padding)
+            ## Changes in v1.8
+            - **CRITICAL FIX**: Fixed app crash when searching items — used stable ObservableCollection instead of swapping ItemsSource on each keystroke
+            - ListView with ItemTapped for reliable touch selection on Android tablets
+            - Results limited to 20 items for smooth scrolling
             - All previous fixes included
 
             ## Downloads

@@ -11,12 +11,14 @@ namespace RoyalBakeryGrn.Pages
         private List<MenuItemDto> _allMenuItems = new();
         private MenuItemDto? _selectedMenuItem;
         private bool _suppressSearch = false;
+        private ObservableCollection<MenuItemDto> _filteredItems = new();
 
         public ClearancePage(ApiClient api)
         {
             InitializeComponent();
             _api = api;
             ClearanceCollectionView.ItemsSource = _todayClearances;
+            MenuItemResultsCollection.ItemsSource = _filteredItems;
         }
 
         protected override async void OnAppearing()
@@ -60,20 +62,20 @@ namespace RoyalBakeryGrn.Pages
             var keyword = e.NewTextValue?.Trim() ?? "";
             _selectedMenuItem = null;
 
-            if (string.IsNullOrWhiteSpace(keyword))
-            {
-                MenuItemResultsCollection.IsVisible = false;
-                MenuItemResultsCollection.ItemsSource = new List<MenuItemDto>();
-            }
-            else
+            _filteredItems.Clear();
+
+            if (!string.IsNullOrWhiteSpace(keyword))
             {
                 var filtered = _allMenuItems
                     .Where(i => i.Name.Contains(keyword, StringComparison.OrdinalIgnoreCase))
+                    .Take(20)
                     .ToList();
 
-                MenuItemResultsCollection.ItemsSource = filtered;
-                MenuItemResultsCollection.IsVisible = filtered.Any();
+                foreach (var item in filtered)
+                    _filteredItems.Add(item);
             }
+
+            MenuItemResultsCollection.IsVisible = _filteredItems.Count > 0;
         }
 
         private void MenuItemResultsCollection_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -130,6 +132,8 @@ namespace RoyalBakeryGrn.Pages
                 MenuItemSearchBar.Text = string.Empty;
                 _suppressSearch = false;
                 _selectedMenuItem = null;
+                _filteredItems.Clear();
+                MenuItemResultsCollection.IsVisible = false;
             }
             catch (Exception ex)
             {

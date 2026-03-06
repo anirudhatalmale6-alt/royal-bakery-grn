@@ -11,12 +11,14 @@ namespace RoyalBakeryGrn.Pages
         private MenuItemDto? _selectedItem;
         private bool _suppressSearch = false;
         private ObservableCollection<GrnItemViewModel> GRNItems { get; set; } = new();
+        private ObservableCollection<MenuItemDto> _filteredItems = new();
 
         public AddGRN(ApiClient api)
         {
             InitializeComponent();
             _api = api;
             GRNListView.ItemsSource = GRNItems;
+            ItemSearchResults.ItemsSource = _filteredItems;
         }
 
         protected override async void OnAppearing()
@@ -44,20 +46,20 @@ namespace RoyalBakeryGrn.Pages
             var keyword = e.NewTextValue?.Trim() ?? "";
             _selectedItem = null;
 
-            if (string.IsNullOrWhiteSpace(keyword))
-            {
-                ItemSearchResults.IsVisible = false;
-                ItemSearchResults.ItemsSource = new List<MenuItemDto>();
-            }
-            else
+            _filteredItems.Clear();
+
+            if (!string.IsNullOrWhiteSpace(keyword))
             {
                 var filtered = _menuItems
                     .Where(i => i.Name.Contains(keyword, StringComparison.OrdinalIgnoreCase))
+                    .Take(20)
                     .ToList();
 
-                ItemSearchResults.ItemsSource = filtered;
-                ItemSearchResults.IsVisible = filtered.Any();
+                foreach (var item in filtered)
+                    _filteredItems.Add(item);
             }
+
+            ItemSearchResults.IsVisible = _filteredItems.Count > 0;
         }
 
         private void ItemSearchResults_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -110,6 +112,8 @@ namespace RoyalBakeryGrn.Pages
             ItemSearchBar.Text = string.Empty;
             _suppressSearch = false;
             _selectedItem = null;
+            _filteredItems.Clear();
+            ItemSearchResults.IsVisible = false;
         }
 
         private void RemoveGRNItem_Clicked(object sender, EventArgs e)
