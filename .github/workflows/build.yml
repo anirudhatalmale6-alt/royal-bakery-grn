@@ -36,16 +36,15 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v1.9
-          name: v1.9 - Search Crash Fix (No ListView)
+          tag_name: v1.10
+          name: v1.10 - Search Debounce Fix
           body: |
-            ## Changes in v1.9
-            - **CRITICAL FIX**: Completely removed ListView/CollectionView for search dropdowns — replaced with plain VerticalStackLayout + TapGestureRecognizer
-            - No data binding, no virtualization, no ItemsSource — just simple native views that are bulletproof on Android
-            - Both Add GRN and Stock Management (Clearance) pages use the new approach
-            - SearchBar replaced with Entry for better compatibility
-            - Results limited to 15 items, each with large touch targets
-            - All previous fixes included
+            ## Changes in v1.10
+            - **CRITICAL FIX**: Added 250ms debounce to search — prevents crash from rapid layout changes on Android
+            - All UI updates now run on MainThread.BeginInvokeOnMainThread
+            - Children.Clear() no longer called on every keystroke (only after debounce)
+            - Try-catch wraps all layout operations to swallow edge-case errors
+            - Both Add GRN and Clearance pages updated
 
             ## Downloads
             - **RoyalBakeryGRN APK** — Android APK

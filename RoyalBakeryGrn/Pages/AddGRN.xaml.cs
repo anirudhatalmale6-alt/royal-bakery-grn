@@ -10,6 +10,7 @@ namespace RoyalBakeryGrn.Pages
         private List<MenuItemDto> _menuItems = new();
         private MenuItemDto? _selectedItem;
         private bool _suppressSearch = false;
+        private CancellationTokenSource? _searchDebounce;
         private ObservableCollection<GrnItemViewModel> GRNItems { get; set; } = new();
 
         public AddGRN(ApiClient api)
@@ -44,69 +45,93 @@ namespace RoyalBakeryGrn.Pages
             var keyword = e.NewTextValue?.Trim() ?? "";
             _selectedItem = null;
 
-            ItemSearchResultsStack.Children.Clear();
+            // Cancel any pending search
+            _searchDebounce?.Cancel();
 
             if (string.IsNullOrWhiteSpace(keyword) || keyword.Length < 1)
             {
-                ItemSearchScroll.IsVisible = false;
+                // Only clear on main thread, debounced
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    ItemSearchResultsStack.Children.Clear();
+                    ItemSearchScroll.IsVisible = false;
+                });
                 return;
             }
 
-            var filtered = _menuItems
-                .Where(i => i.Name.Contains(keyword, StringComparison.OrdinalIgnoreCase))
-                .Take(15)
-                .ToList();
-
-            if (filtered.Count == 0)
+            // Debounce: wait 250ms before updating UI (prevents crash from rapid layout changes)
+            _searchDebounce = new CancellationTokenSource();
+            var token = _searchDebounce.Token;
+            Task.Delay(250, token).ContinueWith(t =>
             {
-                ItemSearchScroll.IsVisible = false;
-                return;
-            }
+                if (t.IsCanceled) return;
+                MainThread.BeginInvokeOnMainThread(() => RenderSearchResults(keyword));
+            });
+        }
 
-            foreach (var item in filtered)
+        private void RenderSearchResults(string keyword)
+        {
+            try
             {
-                var frame = new Frame
+                var filtered = _menuItems
+                    .Where(i => i.Name.Contains(keyword, StringComparison.OrdinalIgnoreCase))
+                    .Take(15)
+                    .ToList();
+
+                ItemSearchResultsStack.Children.Clear();
+
+                if (filtered.Count == 0)
                 {
-                    Padding = new Thickness(14, 12),
-                    Margin = new Thickness(0, 1),
-                    BackgroundColor = Color.FromArgb("#E0F2F1"),
-                    CornerRadius = 8,
-                    HasShadow = false
-                };
+                    ItemSearchScroll.IsVisible = false;
+                    return;
+                }
 
-                var grid = new Grid
+                foreach (var item in filtered)
                 {
-                    ColumnDefinitions = { new ColumnDefinition(GridLength.Star), new ColumnDefinition(GridLength.Auto) },
-                    ColumnSpacing = 10
-                };
+                    var frame = new Frame
+                    {
+                        Padding = new Thickness(14, 12),
+                        Margin = new Thickness(0, 1),
+                        BackgroundColor = Color.FromArgb("#E0F2F1"),
+                        CornerRadius = 8,
+                        HasShadow = false
+                    };
 
-                grid.Add(new Label
-                {
-                    Text = item.Name,
-                    FontSize = 16,
-                    TextColor = Color.FromArgb("#004D40"),
-                    VerticalOptions = LayoutOptions.Center
-                }, 0);
+                    var grid = new Grid
+                    {
+                        ColumnDefinitions = { new ColumnDefinition(GridLength.Star), new ColumnDefinition(GridLength.Auto) },
+                        ColumnSpacing = 10
+                    };
 
-                grid.Add(new Label
-                {
-                    Text = $"Rs. {item.Price:F2}",
-                    FontSize = 14,
-                    TextColor = Color.FromArgb("#757575"),
-                    VerticalOptions = LayoutOptions.Center
-                }, 1);
+                    grid.Add(new Label
+                    {
+                        Text = item.Name,
+                        FontSize = 16,
+                        TextColor = Color.FromArgb("#004D40"),
+                        VerticalOptions = LayoutOptions.Center
+                    }, 0);
 
-                frame.Content = grid;
+                    grid.Add(new Label
+                    {
+                        Text = $"Rs. {item.Price:F2}",
+                        FontSize = 14,
+                        TextColor = Color.FromArgb("#757575"),
+                        VerticalOptions = LayoutOptions.Center
+                    }, 1);
 
-                var tapGesture = new TapGestureRecognizer();
-                var capturedItem = item; // capture for closure
-                tapGesture.Tapped += (s, args) => OnItemSelected(capturedItem);
-                frame.GestureRecognizers.Add(tapGesture);
+                    frame.Content = grid;
 
-                ItemSearchResultsStack.Children.Add(frame);
+                    var tapGesture = new TapGestureRecognizer();
+                    var capturedItem = item;
+                    tapGesture.Tapped += (s, args) => OnItemSelected(capturedItem);
+                    frame.GestureRecognizers.Add(tapGesture);
+
+                    ItemSearchResultsStack.Children.Add(frame);
+                }
+
+                ItemSearchScroll.IsVisible = true;
             }
-
-            ItemSearchScroll.IsVisible = true;
+            catch { /* swallow any layout errors during rapid typing */ }
         }
 
         private void OnItemSelected(MenuItemDto selected)

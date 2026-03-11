@@ -11,6 +11,7 @@ namespace RoyalBakeryGrn.Pages
         private List<MenuItemDto> _allMenuItems = new();
         private MenuItemDto? _selectedMenuItem;
         private bool _suppressSearch = false;
+        private CancellationTokenSource? _searchDebounce;
 
         public ClearancePage(ApiClient api)
         {
@@ -60,52 +61,75 @@ namespace RoyalBakeryGrn.Pages
             var keyword = e.NewTextValue?.Trim() ?? "";
             _selectedMenuItem = null;
 
-            MenuItemResultsStack.Children.Clear();
+            // Cancel any pending search
+            _searchDebounce?.Cancel();
 
             if (string.IsNullOrWhiteSpace(keyword) || keyword.Length < 1)
             {
-                MenuItemSearchScroll.IsVisible = false;
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    MenuItemResultsStack.Children.Clear();
+                    MenuItemSearchScroll.IsVisible = false;
+                });
                 return;
             }
 
-            var filtered = _allMenuItems
-                .Where(i => i.Name.Contains(keyword, StringComparison.OrdinalIgnoreCase))
-                .Take(15)
-                .ToList();
-
-            if (filtered.Count == 0)
+            // Debounce: wait 250ms before updating UI (prevents crash from rapid layout changes)
+            _searchDebounce = new CancellationTokenSource();
+            var token = _searchDebounce.Token;
+            Task.Delay(250, token).ContinueWith(t =>
             {
-                MenuItemSearchScroll.IsVisible = false;
-                return;
-            }
+                if (t.IsCanceled) return;
+                MainThread.BeginInvokeOnMainThread(() => RenderMenuSearchResults(keyword));
+            });
+        }
 
-            foreach (var item in filtered)
+        private void RenderMenuSearchResults(string keyword)
+        {
+            try
             {
-                var frame = new Frame
+                var filtered = _allMenuItems
+                    .Where(i => i.Name.Contains(keyword, StringComparison.OrdinalIgnoreCase))
+                    .Take(15)
+                    .ToList();
+
+                MenuItemResultsStack.Children.Clear();
+
+                if (filtered.Count == 0)
                 {
-                    Padding = new Thickness(14, 12),
-                    Margin = new Thickness(0, 1),
-                    BackgroundColor = Color.FromArgb("#E0F2F1"),
-                    CornerRadius = 8,
-                    HasShadow = false
-                };
+                    MenuItemSearchScroll.IsVisible = false;
+                    return;
+                }
 
-                frame.Content = new Label
+                foreach (var item in filtered)
                 {
-                    Text = item.Name,
-                    FontSize = 16,
-                    TextColor = Color.FromArgb("#004D40")
-                };
+                    var frame = new Frame
+                    {
+                        Padding = new Thickness(14, 12),
+                        Margin = new Thickness(0, 1),
+                        BackgroundColor = Color.FromArgb("#E0F2F1"),
+                        CornerRadius = 8,
+                        HasShadow = false
+                    };
 
-                var tapGesture = new TapGestureRecognizer();
-                var capturedItem = item;
-                tapGesture.Tapped += (s, args) => OnMenuItemSelected(capturedItem);
-                frame.GestureRecognizers.Add(tapGesture);
+                    frame.Content = new Label
+                    {
+                        Text = item.Name,
+                        FontSize = 16,
+                        TextColor = Color.FromArgb("#004D40")
+                    };
 
-                MenuItemResultsStack.Children.Add(frame);
+                    var tapGesture = new TapGestureRecognizer();
+                    var capturedItem = item;
+                    tapGesture.Tapped += (s, args) => OnMenuItemSelected(capturedItem);
+                    frame.GestureRecognizers.Add(tapGesture);
+
+                    MenuItemResultsStack.Children.Add(frame);
+                }
+
+                MenuItemSearchScroll.IsVisible = true;
             }
-
-            MenuItemSearchScroll.IsVisible = true;
+            catch { /* swallow layout errors during rapid typing */ }
         }
 
         private void OnMenuItemSelected(MenuItemDto selected)
