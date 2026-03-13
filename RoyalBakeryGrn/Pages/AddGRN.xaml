@@ -61,7 +61,7 @@
                            Margin="0,0,0,10"/>
 
                     <CollectionView x:Name="GRNListView"
-                                    HeightRequest="250">
+                                    HeightRequest="400">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <Frame Padding="10" Margin="0,5" BackgroundColor="#E0F2F1" CornerRadius="8">

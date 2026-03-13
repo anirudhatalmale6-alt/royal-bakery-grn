@@ -78,7 +78,7 @@
                    HasShadow="True">
                 <VerticalStackLayout>
                     <Label Text="Edit GRN Items" Style="{StaticResource HeaderLabelStyle}" Margin="0,0,0,10"/>
-                    <CollectionView x:Name="AdjustmentItemsView" HeightRequest="300">
+                    <CollectionView x:Name="AdjustmentItemsView" HeightRequest="400">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <Frame Padding="10"

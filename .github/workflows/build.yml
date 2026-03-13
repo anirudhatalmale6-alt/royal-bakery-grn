@@ -36,15 +36,15 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v1.10
-          name: v1.10 - Search Debounce Fix
+          tag_name: v1.11
+          name: v1.11 - Responsive Layout Improvements
           body: |
-            ## Changes in v1.10
-            - **CRITICAL FIX**: Added 250ms debounce to search — prevents crash from rapid layout changes on Android
-            - All UI updates now run on MainThread.BeginInvokeOnMainThread
-            - Children.Clear() no longer called on every keystroke (only after debounce)
-            - Try-catch wraps all layout operations to swallow edge-case errors
-            - Both Add GRN and Clearance pages updated
+            ## Changes in v1.11
+            - Increased CollectionView heights for better tablet display (250→400, 300→400)
+            - Dashboard cards now use FlexLayout for responsive wrapping
+            - Card margins added for proper spacing in FlexLayout
+            - Recent items list height increased (250→350)
+            - Includes all v1.10 debounce fixes
 
             ## Downloads
             - **RoyalBakeryGRN APK** — Android APK
